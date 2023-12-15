@@ -1,5 +1,5 @@
 project           = "terraform-406817"
-credentials_file  = "terraform-406817-e52b412f47fc.json"
+#credentials_file  = "terraform-406817-e52b412f47fc.json"
 region            = "us-central1"
 secret_data       = "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"
 remote_url        = "https://github.com/RicardodaHora/terraform.git"         
