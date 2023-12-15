@@ -40,7 +40,9 @@ variable "zone" {
   default = "us-central1-c"
 }
 
-#variable "remote_url" { }
+variable "remote_url" { 
+  default = "https://github.com/RicardodaHora/terraform.git"
+}
 
 
 
