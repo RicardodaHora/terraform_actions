@@ -48,8 +48,8 @@ jobs:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
     # - name: Destroy
-      #run: terraform destroy --target google_dataform_repository.dataform_respository -auto-approve
-      run: terraform destroy -auto-approve
+      run: terraform destroy --target google_dataform_repository.dataform_respository -auto-approve
+      #run: terraform destroy -auto-approve
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
