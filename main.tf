@@ -12,6 +12,11 @@ terraform {
    region = var.region
  }
 
+ resource "google_project_service" "sourcerepo_api" {
+  project = var.project
+  service = "sourcerepo.googleapis.com"
+}
+
  data "google_secret_manager_secret" "existing_secret" {
    provider = google-beta
    secret_id = "dataform"
