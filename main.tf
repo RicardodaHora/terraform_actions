@@ -5,7 +5,7 @@ provider "google" {
 }
 
 resource "google_bigquery_dataset" "default" {
-  dataset_id = "movies"
+  dataset_id = "terraform-406817"
   location   = "US"
 }
 
