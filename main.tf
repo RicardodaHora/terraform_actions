@@ -1,41 +1,35 @@
-terraform {
-  required_providers {
-    google-beta = {
-      source  = "hashicorp/google-beta"
-      version = "5.5.0"
-    }
-  }
-}
-
- provider "google-beta"{
-   project = var.project
-   region = var.region
- }
-
- resource "google_project_service" "sourcerepo_api" {
+provider "google" {
   project = var.project
-  service = "sourcerepo.googleapis.com"
+  region  = var.region
+  zone    = var.zone
 }
 
- data "google_secret_manager_secret" "existing_secret" {
-   provider = google-beta
-   secret_id = "dataform"
- }
+resource "google_bigquery_dataset" "default" {
+  dataset_id = "movies"
+  location   = "US"
+}
 
- data "google_secret_manager_secret_version" "existing_secret_version" {
-   provider = google-beta
-   secret = data.google_secret_manager_secret.existing_secret.id
-   version = "latest"
- }
+resource "google_bigquery_table" "default" {
+  dataset_id = google_bigquery_dataset.default.dataset_id
+  table_id   = "tabela_test"
 
-resource "google_dataform_repository" "dataform_respository" {
-  provider = google-beta
-  name = "dataform"
-
-  git_remote_settings {
-      url = var.remote_url
-      default_branch = "dataform-test"
-      authentication_token_secret_version = data.google_secret_manager_secret_version.existing_secret_version.id      
+  schema = <<EOF
+[
+  {
+    "name": "coluna1",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "coluna2",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "coluna3",
+    "type": "FLOAT",
+    "mode": "REQUIRED"
   }
-
- }
+]
+EOF
+}
