@@ -1,7 +1,7 @@
 variable "dataset_id" {
   description = "O ID do conjunto de dados do BigQuery"
   type        = string
-  default     = "movies"
+  default     = "terraform-406817"
 }
 
 resource "google_bigquery_dataset" "default" {
