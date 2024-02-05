@@ -1,11 +1,11 @@
-provider "google" {
-  project = var.project
-  region  = var.region
-  zone    = var.zone
+variable "dataset_id" {
+  description = "O ID do conjunto de dados do BigQuery"
+  type        = string
+  default     = "movies"
 }
 
 resource "google_bigquery_dataset" "default" {
-  dataset_id = "terraform-406817"
+  dataset_id = var.dataset_id
   location   = "US"
 }
 
