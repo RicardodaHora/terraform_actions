@@ -44,7 +44,9 @@ variable "remote_url" {
   default = "https://github.com/RicardodaHora/terraform.git"
 }
 
-
+variable "default_database" {
+  default = "pbeat04042280-prod-3a63-smarth"
+}
 
 
 
