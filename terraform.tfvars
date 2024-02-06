@@ -6,11 +6,11 @@ datasets = {
     "movies" = [
         {
             table_id = "table_1"
-            schema_file="rm_valores.json"
+            schema_file="tabela1.json"
         },
         {
             table_id = "table_2"
-            schema_file="tabela1.json"
+            schema_file="tabela2.json"
         }
     ]
 }
