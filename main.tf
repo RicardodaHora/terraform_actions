@@ -40,7 +40,7 @@ resource "google_bigquery_table" "tables" {
      ]
 }
 
-resource "google_bigquery_dataset" "datasets" {
-    for_each = local.datasets
-    dataset_id = each.key
-}
+# resource "google_bigquery_dataset" "datasets" {
+#     for_each = local.datasets
+#     dataset_id = each.key
+# }
