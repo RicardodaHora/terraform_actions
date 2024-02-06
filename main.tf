@@ -7,11 +7,6 @@ terraform {
   }
 }
 
- provider "google-beta"{
-   project = var.project
-   region = var.region
- }
-
 provider "google" {
   credentials = file("terraform-406817-71a350626408.json")
    project = var.project
@@ -23,6 +18,7 @@ provider "google" {
 #   dataset_id = var.dataset_id
 #   location   = "US"
 # }
+
 
 resource "google_bigquery_table" "tables" {
   dataset_id = google_bigquery_dataset.default.dataset_id
