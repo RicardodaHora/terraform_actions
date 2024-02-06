@@ -35,7 +35,7 @@ resource "google_bigquery_table" "tables" {
   },
   {
     "name": "coluna3",
-    "type": "FLOAT64"
+    "type": "INTEGER"
   }
 ]
 EOF
