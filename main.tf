@@ -26,18 +26,16 @@ resource "google_bigquery_table" "tables" {
 [
   {
     "name": "coluna1",
-    "type": "STRING",
-    "mode": "REQUIRED"
+    "type": "STRING"
+
   },
   {
     "name": "coluna2",
-    "type": "STRING",
-    "mode": "REQUIRED"
+    "type": "STRING"
   },
   {
     "name": "coluna3",
-    "type": "FLOAT",
-    "mode": "REQUIRED"
+    "type": "FLOAT64"
   }
 ]
 EOF
