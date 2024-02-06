@@ -9,8 +9,8 @@ terraform {
 
 provider "google" {
   credentials = file("terraform-406817-71a350626408.json")
-   project = var.project
-   region = var.region
+   project = "terraform-406817"
+   region = "US"
 }
 
 resource "google_bigquery_dataset" "default" {
