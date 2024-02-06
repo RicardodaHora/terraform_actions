@@ -18,7 +18,6 @@ provider "google" {
 #   location   = "US"
 # }
 
-
 resource "google_bigquery_table" "tables" {
   dataset_id = google_bigquery_dataset.default.dataset_id
   table_id   = "tabela_test"
