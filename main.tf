@@ -13,20 +13,20 @@ provider "google" {
    region = "US"
 }
 variable "datasets" {
-  
+
 }
 
-locals{
-    datasets = var.datasets
-    tables = flatten([
-        for dataset_i, tables in local.var.datasets:[
-            for table in tables:{
-                dataset_id = dataset_id
-                table_id = table.table_id
-                schema_file = table.schema_file
-            }
-        ]
-    ])
+locals {
+  datasets = var.datasets
+  tables = flatten([
+    for dataset_id tables in local.datasets : [
+      for table in tables : {
+        dataset_id = dataset_id
+        table_id = table.table_id
+        schema_file = table.schema_file
+      }
+    ]
+  ])
 }
 
 resource "google_bigquery_table" "tables" {
