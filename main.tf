@@ -35,9 +35,9 @@ resource "google_bigquery_table" "tables" {
     dataset_id = each.value.dataset_id
     table_id =   each.value.table_id
     schema = file(each.value.schema_file)
-    depends_on = [ 
-        google_bigquery_dataset.datasets
-     ]
+    # depends_on = [ 
+    #     google_bigquery_dataset.datasets
+    #  ]
 }
 
 # resource "google_bigquery_dataset" "datasets" {
