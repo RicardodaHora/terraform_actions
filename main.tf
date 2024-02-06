@@ -13,29 +13,26 @@ provider "google" {
    region = "US"
 }
 
-resource "google_bigquery_dataset" "default" {
-  dataset_id = "movies"
-  location   = "US"
-}
-
-resource "google_bigquery_table" "tables" {
-  dataset_id = google_bigquery_dataset.default.dataset_id
-  table_id   = "tabela_test"
+resource "google_bigquery_table" "tabela_teste" {
+  dataset_id = "movies" // Substitua YYYY pelo ID do seu dataset
+  table_id   = "tabela_teste"
 
   schema = <<EOF
 [
   {
     "name": "coluna1",
-    "type": "STRING"
-
+    "type": "STRING",
+    "mode": "NULLABLE"
   },
   {
     "name": "coluna2",
-    "type": "STRING"
+    "type": "STRING",
+    "mode": "NULLABLE"
   },
   {
     "name": "coluna3",
-    "type": "INTEGER"
+    "type": "FLOAT",
+    "mode": "NULLABLE"
   }
 ]
 EOF
