@@ -1,0 +1,23 @@
+[
+    {
+      "name": "descricao",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "tipo",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "categoria",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "valor",
+      "type": "FLOAT64",
+      "mode": "NULLABLE"
+    }
+  ]
+  

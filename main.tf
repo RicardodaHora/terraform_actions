@@ -16,7 +16,6 @@ variable "datasets" {
 
 }
 
-
 locals {
   datasets = var.datasets
   tables = flatten([
