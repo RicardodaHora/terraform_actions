@@ -7,7 +7,7 @@
     {
       "name": "coluna2",
       "type": "string",
-      "mode": "NULLABLE",
+      "mode": "NULLABLE"
     }
   ]
   
