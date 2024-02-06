@@ -14,7 +14,7 @@ provider "google" {
 }
 
 resource "google_bigquery_dataset" "default" {
-  dataset_id = var.dataset_id
+  dataset_id = "terraform-406817"
   location   = "US"
 }
 
