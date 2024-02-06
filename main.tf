@@ -17,7 +17,7 @@ variable "datasets" {
 }
 
 locals {
-  datasets = var.datasets
+  #datasets = var.datasets
   tables = flatten([
     for dataset_id tables in local.datasets : [
       for table in tables : {
