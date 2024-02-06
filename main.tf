@@ -16,10 +16,10 @@ variable "datasets" {
 
 }
 
+
 locals {
-  #datasets = var.datasets
   tables = flatten([
-    for dataset_id tables in local.datasets : [
+    for dataset_id, tables in local.datasets : [
       for table in tables : {
         dataset_id = dataset_id
         table_id = table.table_id
@@ -28,6 +28,20 @@ locals {
     ]
   ])
 }
+
+
+# locals {
+#   #datasets = var.datasets
+#   tables = flatten([
+#     for dataset_id tables in local.datasets : [
+#       for table in tables : {
+#         dataset_id = dataset_id
+#         table_id = table.table_id
+#         schema_file = table.schema_file
+#       }
+#     ]
+#   ])
+# }
 
 resource "google_bigquery_table" "tables" {
     for_each = {for table in local.tables : "${table.dataset_id}.${table.table_id}" => table}
