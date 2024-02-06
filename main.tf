@@ -12,6 +12,13 @@ terraform {
    region = var.region
  }
 
+provider "google" {
+  credentials = file("terraform-406817-71a350626408.json")
+   project = var.project
+   region = var.region
+}
+
+
 # resource "google_bigquery_dataset" "default" {
 #   dataset_id = var.dataset_id
 #   location   = "US"
