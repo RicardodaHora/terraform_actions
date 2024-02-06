@@ -12,7 +12,10 @@ provider "google" {
    project = "terraform-406817"
    region = "US"
 }
-variable "datasets"
+variable "datasets" {
+  
+}
+
 locals{
     datasets = var.datasets
     tables = flatten([
