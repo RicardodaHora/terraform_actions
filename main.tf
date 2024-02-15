@@ -1,17 +1,18 @@
 terraform {
   required_providers {
-    google-beta = {
-      source  = "hashicorp/google-beta"
-      version = "5.5.0"
+    google = {
+      source  = "hashicorp/google"
+      version = ">=4.0" # Latest stable version
     }
   }
 }
 
 provider "google" {
   credentials = file("terraform-406817-71a350626408.json")
-   project = "terraform-406817"
-   region = "US"
+  project = "terraform-406817"
+  region = "US"
 }
+
 variable "datasets" {
 
 }
@@ -24,63 +25,27 @@ locals {
         dataset_id = dataset_id
         table_id = table.table_id
         schema_file = table.schema_file
-        project_id = google.project
       }
     ]
   ])
 }
 
-#if ! bq --project_id=${google.project.project_id} ls ${each.value.dataset_id}:${each.value.table_id} > /dev/null 2>&1; then      
-
 resource "google_bigquery_table" "tables" {
   for_each = {for table in local.tables : "${table.dataset_id}.${table.table_id}" => table}
   dataset_id = each.value.dataset_id
-  table_id =   each.value.table_id
+  table_id = each.value.table_id
   schema = file(each.value.schema_file)
 
   provisioner "local-exec" {
     command = <<EOF
-      if ! bq --project_id=${project_id} ls ${each.value.dataset_id}:${each.value.table_id} > /dev/null 2>&1; then
+      if ! bq --project_id=${google.project} ls ${each.value.dataset_id}:${each.value.table_id} > /dev/null 2>&1; then
         exit 1
       fi
     EOF
-    interpreter = ["/bin/sh", "-c"]
-    on_failure = "continue"
+    on_failure = continue
   }
 
   lifecycle {
     create_before_destroy = true
   }
 }
-
-
-
-# resource "google_bigquery_table" "tables" {
-#     for_each = {for table in local.tables : "${table.dataset_id}.${table.table_id}" => table}
-#     dataset_id = each.value.dataset_id
-#     table_id =   each.value.table_id
-#     schema = file(each.value.schema_file)
-
-#     # Verifica se a tabela já existe
-#     depends_on = [google_bigquery_table_exists.check_table]
-
-#     lifecycle {
-#       create_before_destroy = true
-#     }
-# }
-
-# resource "google_bigquery_table_exists" "check_table" {
-#   for_each = each.value
-
-#   project = google.project
-#   dataset_id = each.key.dataset_id
-#   table_id = each.key.table_id
-# }
-
-
-# resource "google_bigquery_dataset" "datasets" {
-#     for_each = local.datasets
-#     dataset_id = each.key
-# }
-
-
