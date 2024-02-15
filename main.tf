@@ -7,12 +7,11 @@ terraform {
   }
 }
 
-provider "google" {
+provider "google-beta" {
   credentials = file("terraform-406817-71a350626408.json")
-  project = "terraform-406817"
-  region = "US"
+  project     = "terraform-406817"
+  region      = "US"
 }
-
 
 resource "google_project" "project" {
   provider = google
