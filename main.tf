@@ -73,13 +73,12 @@ resource "google_bigquery_table" "tables" {
 }
 
 resource "google_bigquery_table_exists" "check_table" {
-  for_each = each.value
+  for_each = {for table in local.tables : "${table.dataset_id}.${table.table_id}" => table}
 
   project = google_project.project.project_id
-  dataset_id = each.key.dataset_id
-  table_id = each.key.table_id
+  dataset_id = each.value.dataset_id
+  table_id = each.value.table_id
 }
-
 
 # resource "google_bigquery_dataset" "datasets" {
 #     for_each = local.datasets
