@@ -16,6 +16,7 @@ provider "google" {
 resource "google_project" "project" {
   provider = google
   project_id = "terraform-406817"
+  name = "Terraform"
 }
 
 variable "datasets" {
@@ -55,7 +56,6 @@ resource "google_bigquery_table" "tables" {
     create_before_destroy = true
   }
 }
-
 
 # resource "google_bigquery_table" "tables" {
 #     for_each = {for table in local.tables : "${table.dataset_id}.${table.table_id}" => table}
