@@ -38,7 +38,7 @@ resource "google_bigquery_table" "tables" {
 
   provisioner "local-exec" {
     command = <<EOF
-      if ! bq --project_id=${google.project} ls ${each.value.dataset_id}:${each.value.table_id} > /dev/null 2>&1; then
+      if ! bq --project_id=${project} ls ${each.value.dataset_id}:${each.value.table_id} > /dev/null 2>&1; then
         exit 1
       fi
     EOF
