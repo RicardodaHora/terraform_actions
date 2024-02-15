@@ -12,9 +12,13 @@ datasets = {
             table_id = "table_2"
             schema_file="tabela2.json"
         },
-        {
+        {,
             table_id = "table_3"
             schema_file="tabela3.json"
-        }        
+        },       
+        {
+            table_id = "table_4"
+            schema_file="tabela4.json"
+        }         
     ]
 }
