@@ -45,7 +45,12 @@ variable "remote_url" {
 }
 
 variable "default_database" {
-  default = "pbeat04042280-prod-3a63-smarth"
+  default = "terraform-406817"
+}
+
+
+variable "dataset_id" {
+  default = "terraform-406817"
 }
 
 

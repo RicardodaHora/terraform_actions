@@ -1,0 +1,18 @@
+[
+    {
+      "name": "nome",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "endereco",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "cidade",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+]
+  
