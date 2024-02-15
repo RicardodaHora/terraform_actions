@@ -13,10 +13,12 @@ provider "google" {
   region = "US"
 }
 
+
 resource "google_project" "project" {
   provider = google
   project_id = "terraform-406817"
   name = "Terraform"
+  parent = "organizations/12345678"
 }
 
 variable "datasets" {
