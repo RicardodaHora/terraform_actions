@@ -39,14 +39,14 @@ resource "google_bigquery_table" "tables" {
   lifecycle {
     create_before_destroy = true
   }
-
   # Conditional block to check if table exists and skip creation
   provisioner "local-exec" {
-    when = <<EOF
-      google bq ls "$dataset_id:$table_id" > /dev/null 2>&1 && exit 1
-EOF
-    command = "" # Empty command since it's only for condition check
-  }
+    when = create
+    command = <<EOF
+      google bq ls "$dataset_id:$table_id" > /dev/null && exit 1
+    EOF
+    }  
+
 }
 
 
