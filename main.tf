@@ -13,27 +13,10 @@ provider "google" {
   region = "US"
 }
 
-variable "datasets" {
-
-}
-
-locals {
-  datasets = var.datasets
-  tables = flatten([
-    for dataset_id, tables in local.datasets:[
-      for table in tables : {
-        dataset_id = dataset_id
-        table_id = table.table_id
-        schema_file = table.schema_file
-      }
-    ]
-  ])
-}
-
 resource "google_bigquery_table" "tables" {
   for_each = {for table in local.tables : "${table.dataset_id}.${table.table_id}" => table}
   dataset_id = each.value.dataset_id
-  table_id = each.value.table_id
+  table_id =   each.value.table_id
   schema = file(each.value.schema_file)
 
   provisioner "local-exec" {
@@ -42,6 +25,7 @@ resource "google_bigquery_table" "tables" {
         exit 1
       fi
     EOF
+    interpreter = ["/bin/sh", "-c"]
     on_failure = continue
   }
 
