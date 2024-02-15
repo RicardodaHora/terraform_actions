@@ -9,9 +9,15 @@ terraform {
 
 provider "google" {
   credentials = file("terraform-406817-71a350626408.json")
-   project = "terraform-406817"
-   region = "US"
+  project = "terraform-406817"
+  region = "US"
 }
+
+resource "google_project" "project" {
+  provider = google
+  project_id = "terraform-406817"
+}
+
 variable "datasets" {
 
 }
@@ -29,7 +35,6 @@ locals {
   ])
 }
 
-
 resource "google_bigquery_table" "tables" {
   for_each = {for table in local.tables : "${table.dataset_id}.${table.table_id}" => table}
   dataset_id = each.value.dataset_id
@@ -43,14 +48,13 @@ resource "google_bigquery_table" "tables" {
       fi
     EOF
     interpreter = ["/bin/sh", "-c"]
-    on_failure = "continue"
+    on_failure = continue
   }
 
   lifecycle {
     create_before_destroy = true
   }
 }
-
 
 
 # resource "google_bigquery_table" "tables" {
